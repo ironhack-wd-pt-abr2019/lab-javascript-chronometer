@@ -31,7 +31,7 @@ function printSeconds() {
 }
 
 function printMilliseconds() {
-  let strMilliseconds = chronometer.twoDigitsNumber(chronometer.currentTime / 1000);
+  let strMilliseconds = chronometer.twoDigitsNumber(chronometer.currentTime % 1000);
   milDec.innerText = strMilliseconds.substr(0,1);
   milUni.innerText = strMilliseconds.substr(1,1);
 }
@@ -76,8 +76,7 @@ btnLeft.addEventListener('click', function () {
 
     intervalId = setInterval(() => {
       printTime();
-      console.trace();
-    }, 1)
+    }, 0)
 
   } else if (btnLeft.innerText === 'STOP') {
     btnLeft.innerText = 'START';
