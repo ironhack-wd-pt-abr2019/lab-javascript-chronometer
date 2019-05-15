@@ -22,7 +22,7 @@ class Chronometer {
 
   twoDigitsNumber(value = 0) {
     return typeof(value) === 'number' ? 
-      value.toLocaleString('en', {minimumIntegerDigits:2}) 
+      value.toLocaleString('en', {minimumIntegerDigits:2}, {maximumFractionDigits:0}) 
       : null;
   }
    stopClick() {

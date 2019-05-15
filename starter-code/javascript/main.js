@@ -37,10 +37,27 @@ function printMilliseconds() {
 }
 
 function printSplit() {
+  let list = document.getElementById('splits');
+  let item = document.createElement('ol');
 
+  let minutes = chronometer.twoDigitsNumber(chronometer.getMinutes()).substr(0,2);
+  let seconds = chronometer.twoDigitsNumber(chronometer.getSeconds()).substr(0,2);
+  let milliseconds = chronometer.twoDigitsNumber(chronometer.currentTime % 1000).substr(0,2);
+  let time = `${minutes} : ${seconds} : ${milliseconds}`;
+
+  item.innerText = time;
+  list.appendChild(item);
 }
 
 function clearSplits() {
+  let list = document.getElementById('splits');
+  list.innerHTML = '';
+
+  
+  chronometer.stopClick();
+  chronometer.resetClick();
+  clearInterval(intervalId);
+  printTime();
 
 }
 
@@ -93,5 +110,11 @@ btnLeft.addEventListener('click', function () {
 
 // Reset/Split Button
 btnRight.addEventListener('click', function () {
+
+  if (btnRight.innerText === 'SPLIT') {
+    printSplit();
+  }else if (btnRight.innerText === 'RESET'){
+    clearSplits();
+  }
   
 });
